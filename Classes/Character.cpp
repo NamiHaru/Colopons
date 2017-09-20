@@ -138,7 +138,6 @@ void Character::moveStart()
 	setState(STATUS::MOVE);
 	moveTimer = 0;
 	startPosition = myPosition;
-	mySprite->startAnimation();
 };
 
 void Character::moveStop()
@@ -147,7 +146,6 @@ void Character::moveStop()
 	moveTimer = 0;
 	lastTargetPosition = myPosition;
 	targetPosition = myPosition;
-	mySprite->stopAnimation();
 };
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

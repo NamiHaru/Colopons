@@ -107,14 +107,14 @@ bool TitleLayer::onTouchBegan(Touch* touch, Event* event)
 	/*auto str = String::createWithFormat("%f, %f", touch->getLocation().x, touch->getLocation().y);
 	label->setString(str->getCString());*/
 	
-	if (touch->getLocation().x < base && touch->getLocation().y > designResolutionSize.height - base)
+	/*if (touch->getLocation().x < base && touch->getLocation().y > designResolutionSize.height - base)
 	{
 		_saveData->AllResset();
 		auto scene = TitleSelectScene::createTitleScene();
 		auto transition = TransitionPageTurn::create(0.5f, scene, 1);
 		Director::getInstance()->replaceScene(transition);
 	}
-
+*/
 	if (_replacedScene && ((TitleSelectScene*)this->getParent())->_replaceLayer) return false;
 	_replacedScene = true;
 	((TitleSelectScene*)this->getParent())->replaceSelect();

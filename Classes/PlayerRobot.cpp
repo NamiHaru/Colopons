@@ -63,6 +63,7 @@ bool PlayerRobot::init(Vec2 pos,Color4F col)
 	goalPa = CutParticle::create("Game/Player/Goal.png",1,2, col);
 	addChild(goalPa,5);
 
+
 	return true;
 };
 
@@ -123,6 +124,7 @@ void PlayerRobot::nextPosition()
 		lastTargetPosition = getDirectionDegree(Vec2(1, 0), angles.at(angleNum), doubtDegree) + myPosition;
 		targetPosition = lastTargetPosition;
 		angleNum++;
+		mySprite->startAnimation();
 	}
 	else
 	{
@@ -139,6 +141,7 @@ void PlayerRobot::stopPosition()
 	isMove = false;
 	isStandby= false;
 	angleNum = 0;
+	mySprite->stopAnimation();
 	stopAnimation();
 };
 
@@ -150,6 +153,7 @@ void PlayerRobot::findPosition()
 	isMove = false;
 	isStandby = true;
 	angleNum = 0;
+	mySprite->stopAnimation();
 	findAnimation();
 	SimpleAudioEngine::getInstance()->playEffect("Sounds/PlayerGoal.mp3");
 	setState(STATUS::FIND);
