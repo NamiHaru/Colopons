@@ -365,7 +365,7 @@ void Wall::checkCutArea(Vec2* points)
 	sumLeft = sumArea(points, left);
 	log("sumLeft=%0.0f", sumArea(points, left));
 
-	if (abs((sumRight-sumLeft))/(sumRight+sumLeft)<=0.002f)
+	if (abs((sumRight-sumLeft))/(sumRight+sumLeft)<=HALF_RANGE)
 	{
 		//log("allCut");
 		//大きさがほぼ一緒(クリティカル) 

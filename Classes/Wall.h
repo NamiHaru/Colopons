@@ -78,6 +78,8 @@ public:
 	Vec2 getOverPoint(Vec2 points[],int limit,int num);
 	//選択点と次の点との方向ベクトルを返す
 	Vec2 getSegment(int startpoint);
+private:
+	const float HALF_RANGE = 0.05;
 };
 
 #endif // !__WALL_H__

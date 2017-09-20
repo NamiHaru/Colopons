@@ -43,6 +43,7 @@ EndingScene* EndingScene::createLayer(eLAYER el)
 	scene->_soundSystem = SoundSystem::create();
 	scene->addChild(scene->_soundSystem);
 	scene->_soundSystem->preloadBGM("Sounds/TitleBGM.mp3");
+	scene->_soundSystem->playBGM("Sounds/GameBGM.mp3");
 
 	scene->_nowLayer = el;
 	Layer* layer = NULL;

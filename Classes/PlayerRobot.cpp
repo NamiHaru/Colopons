@@ -63,10 +63,6 @@ bool PlayerRobot::init(Vec2 pos,Color4F col)
 	goalPa = CutParticle::create("Game/Player/Goal.png",1,2, col);
 	addChild(goalPa,5);
 
-	moveRangeSp = DrawNode::create();
-	addChild(moveRangeSp);
-	moveRangeSp->drawCircle(Vec2(0, 0), moveRange, 0, 360, false, Color4F::GRAY);
-
 	return true;
 };
 
@@ -138,7 +134,6 @@ void PlayerRobot::nextPosition()
 //—§‚¿Ž~‚Ü‚Á‚½Žž
 void PlayerRobot::stopPosition()
 {
-	moveRangeSp->clear();
 	angles.clear();
 	
 	isMove = false;
@@ -150,7 +145,6 @@ void PlayerRobot::stopPosition()
 //ƒS[ƒ‹‚ðŒ©‚Â‚¯‚½‚Æ‚«
 void PlayerRobot::findPosition() 
 {
-	moveRangeSp->clear();
 	angles.clear();
 
 	isMove = false;
