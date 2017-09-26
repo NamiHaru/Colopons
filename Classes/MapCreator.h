@@ -5,6 +5,7 @@
 #include "PlayerCloser.h"
 #include "Goal.h"
 #include "Wall.h"
+#include "WarpHole.h"
 
 #include <iostream>
 
@@ -14,6 +15,7 @@
 #define D_L_GOAL 14
 #define D_L_WALL 33
 #define D_L_FLOOR 2048
+#define D_L_WARPHOLE 16//–¢’è
 #define D_FLOOR_LINE 8
 
 #define TILE_SIZE 64

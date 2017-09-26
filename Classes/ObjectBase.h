@@ -29,6 +29,7 @@ public:
 	//Õ“Ë”ÍˆÍ‚Ìİ’è
 	void setObjectRange(float range);
 
+
 	//ˆÚ“®‰Â”\”ÍˆÍ‚ğ¦‚·‰~ŠÂ
 	DrawNode* moveRangeSp;
 	//©g‚Ì‰æ‘œ

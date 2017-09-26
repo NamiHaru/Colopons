@@ -77,6 +77,9 @@ void MapCreator::loadMap(string mapText)
 			i += D_L_FLOOR;
 			log("floorend\n--------------------------------------");
 			break;
+		case 'H'://warpHole
+
+			break;
 		default:
 			//log("default");
 			break;
@@ -350,6 +353,13 @@ Layer* MapCreator::printMap()
 		walls.at(i)->setTargets(&robot->rightRobot->myPosition, &robot->leftRobot->myPosition);
 		layer->addChild(walls.at(i), 3);
 	}
+	log("warp");
+	//debug
+	//ñ¢äÆê¨É]Å[Éì
+	WarpHole* w = WarpHole::create(Vec2(500, 600), Vec2(900, 600), robot);
+	addChild(w, 3);
+
+	//--------
 	log("floor");
 	log("size=%d\n--------------------------------------", floors.size());
 	for (int i = 0; i < floors.size(); i++)
@@ -363,6 +373,7 @@ Layer* MapCreator::printMap()
 	sp->setPosition(designResolutionSize*0.5f);
 	sp->setColor(Color3B::WHITE);
 	layer->addChild(sp);
+
 
 	return layer;
 };

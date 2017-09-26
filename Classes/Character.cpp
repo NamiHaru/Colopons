@@ -150,6 +150,15 @@ void Character::moveStop()
 	mySprite->stopAnimation();
 };
 
+//ÉèÅ[Év
+void Character::objectWarp(ObjectBase* target)
+{
+	myPosition = target->myPosition;
+	targetPosition += myPosition;
+	startPosition += myPosition;
+};
+
+
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //îªíËèàóù
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -317,12 +326,7 @@ void Character::allCollision()
 	SEGMENT mySeg = SEGMENT(myPosition, Vec2(normalize(lastTargetPosition - myPosition)*objectRange + myPosition));
 	Vec2 movement = normalize(lastTargetPosition - myPosition)*objectRange;
 
-	/*for(int i = 0; i < targets.size(); i++)
-	{
-			float s = onCollisionCircle(myPosition, objectRange, targets.at(i)->myPosition, targets.at(i)->objectRange);
-			myPosition = (myPosition - targetPosition)*s + myPosition;
-	}
-*/
+	//ï«ÇÃè’ìÀ
 	for (int i = 0; i < walls.size(); i++)
 		for (int j = 0; j < walls.at(i)->segmentCount; j++)
 		{

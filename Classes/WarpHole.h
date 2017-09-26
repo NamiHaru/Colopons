@@ -3,35 +3,46 @@
 
 #include "AllTags.h"
 #include "ObjectBase.h"
+#include "PlayerCloser.h"
 
 using namespace std;
 
-class WarpHole :public ObjectBase 
+//対象が初回ヒット時にパートナーのホールにワープをさせる
+//ワープ先のホールはキャラクターが離れるまで次回ワープを見逃す
+
+//ワープホール単体
+class Hole :public ObjectBase 
 {
 public:
-	static WarpHole* create(Vec2 spawnPos);
+	static Hole* create(Vec2 spawnPos);
 	//初期設定
 	virtual bool init(Vec2 spawnPos);
 	//更新
 	virtual void update(float delta);
 
-	Vec2 myPosition;
-	Vec2 partnerPosition;
-	WarpHole* partner;
-	bool isHit;
-	float collider;
-	float timer;
-	vector<int> hits;
 	Sprite* mySprite;
-
-	//対象が自身に衝突したらその対象を瞬間移動させる
-	//当たり続けている場合は無効になる
-	void objectWarp(Vec2& target, Vec2& partner);
-
-
-
-
+	bool isHit;
 };
 
+//対になるワープホールの管理者
+class WarpHole :public Node
+{
+public:
+	static WarpHole* create(Vec2 w1, Vec2 w2,PlayerCloser* target);
+	bool init(Vec2 w1, Vec2 w2,PlayerCloser* target);
+	void update(float delta);
+	
+	void setTargetPlayers(PlayerCloser* p);
+	//対象が自身に衝突したらその対象を瞬間移動させる
+	//当たり続けている場合は無効になる
+	void objectWarp(Character* target, Vec2& partner);
+	bool onCollisionPlayers();
+
+
+	PlayerCloser* player;//対象とするプレイヤー
+	Hole *warp1, *warp2;//管理するワープホール
+	bool inWarpMiddle;//ワープしている最中か
+
+};
 
 #endif // !__WARPHOLE_H__

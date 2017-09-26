@@ -36,6 +36,8 @@ public:
 	void moveStart();
 	//’â~
 	void moveStop();
+	//ƒ[ƒv
+	void objectWarp(ObjectBase* target);
 
 	//”»’èˆ—
 	//-----------------------------------------

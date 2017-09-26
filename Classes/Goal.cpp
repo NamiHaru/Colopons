@@ -23,7 +23,7 @@ bool Goal::init(Vec2 spawnPos,Color4F color)
 	setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	initialize(spawnPos);
 	myColor = color;
-
+	objectRange = 75.0f;
 
 	mySprite = Sprite::create("Game/Jewel.png");
 	mySprite->setColor(Color3B(color.r*255.0f,color.g*255.0f,color.b*255.0f));
