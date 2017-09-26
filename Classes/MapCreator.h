@@ -51,6 +51,7 @@ public:
 	Vector<String*> names;
 	Vector<Wall*> walls;
 	Vector<Node*> floors;
+	Vector<WarpHole*> warp;
 	Color4F playerColor;
 
 	//マップ作成処理---------------------------------------------------------------------------
@@ -71,6 +72,7 @@ public:
 	void analyzeGoal(char* data);
 	void analyzeWall(char* data);
 	void analyzeObject(char* data);
+	void analyzeWarp(char* data);
 	void analyzeFloor(char* data);
 	//解析に使うための文字列の先頭アドレスを手に入れる
 	char* getAnalyzeData(string text,int length);

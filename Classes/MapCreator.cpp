@@ -113,8 +113,8 @@ void MapCreator::analyzePlayer(char* data)
 	Vec2 oneP, twoP;
 	DIR_DEGREE oneR=DIR_DEGREE::DIR_DOWN, twoR=DIR_DEGREE::DIR_DOWN;
 
+			//4バイト単位で座標を管理しているためdata+=4;
 			oneP.x = getCharToFloat(data);
-			//4バイト単位で座標を管理しているため
 			data += 4;
 			oneP.y = getCharToFloat(data);
 			data += 4;
@@ -172,6 +172,28 @@ void MapCreator::analyzeWall(char* data)
 
 void MapCreator::analyzeObject(char* data)
 {
+
+};
+
+void MapCreator::analyzeWarp(char* data) 
+{
+	Vec2 oneP, twoP;
+	
+	//4バイト単位で座標を管理しているためdata+=4;
+	oneP.x = getCharToFloat(data);
+	data += 4;
+	oneP.y = getCharToFloat(data);
+	data += 4;
+	twoP.x = getCharToFloat(data);
+	data += 4;
+	twoP.y = getCharToFloat(data);
+	
+	log("one[%f,%f]", oneP.x, oneP.y);
+	log("two[%f,%f]", twoP.x, twoP.y);
+
+	WarpHole* warphole=WarpHole::create(oneP, twoP, robot);
+	warp.pushBack(warphole);
+	log("push-warp");
 
 };
 
@@ -329,8 +351,6 @@ void MapCreator::checkWall(Character* obj, Vector<Wall*>wall, float range)
 	}
 };
 
-
-
 Layer* MapCreator::printMap()
 {
 	log("printStart\n--------------------------------------");
@@ -356,8 +376,10 @@ Layer* MapCreator::printMap()
 	log("warp");
 	//debug
 	//未完成ゾーン
-	WarpHole* w = WarpHole::create(Vec2(500, 600), Vec2(900, 600), robot);
-	addChild(w, 3);
+	for (int i = 0; i < warp.size(); i++) 
+	{
+		layer->addChild(warp.at(i), 3);
+	}
 
 	//--------
 	log("floor");
