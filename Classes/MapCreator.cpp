@@ -78,7 +78,9 @@ void MapCreator::loadMap(string mapText)
 			log("floorend\n--------------------------------------");
 			break;
 		case 'H'://warpHole
-
+			analyzeWarp(getAnalyzeData(mapText.substr(i + 1, i + D_L_WARPHOLE), D_L_WARPHOLE));
+			i += D_L_WARPHOLE;
+			log("warpholeend\n--------------------------------------");
 			break;
 		default:
 			//log("default");
@@ -380,7 +382,6 @@ Layer* MapCreator::printMap()
 	{
 		layer->addChild(warp.at(i), 3);
 	}
-
 	//--------
 	log("floor");
 	log("size=%d\n--------------------------------------", floors.size());
