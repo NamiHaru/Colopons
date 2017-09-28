@@ -20,6 +20,9 @@ public:
 	//更新
 	virtual void update(float delta);
 
+	//変化アニメーション
+	void playAnimation(bool startOrEnd);
+
 	Sprite* mySprite;
 	bool isHit;
 };
@@ -36,6 +39,7 @@ public:
 	//対象が自身に衝突したらその対象を瞬間移動させる
 	//当たり続けている場合は無効になる
 	void objectWarp(Character* target, Vec2& partner);
+	void warpAnimation(Hole*start,Hole* end);
 	bool onCollisionPlayers();
 
 

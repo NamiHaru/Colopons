@@ -86,5 +86,3 @@ void ObjectBase::setObjectRange(float range)
 {
 	objectRange = range;
 }
-
-
