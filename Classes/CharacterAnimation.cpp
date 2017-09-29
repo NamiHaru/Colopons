@@ -277,36 +277,36 @@ void CharacterAnimation::stopAnimation(eDIR dirName)
 {
 	if (_movedAnim == false && _dir == dirName) return;
 	_mySprite->stopAllActions();
-	//_ponSprite->stopAllActions();
+	_ponSprite->stopAllActions();
 	_dir = dirName;
 	_movedAnim = false;
 	Animation* anim;
-	//Animation* ponA;
+	Animation* ponA;
 	switch (dirName)
 	{
 	case eDIR::FRONT:
 		anim = _animationChache->animationByName("STOP_F");
-		//ponA = _animationChache->animationByName("P_STOP_F");
+		ponA = _animationChache->animationByName("P_FRONT");
 		break;
 	case eDIR::BACK:
 		anim = _animationChache->animationByName("STOP_B");
-		//ponA = _animationChache->animationByName("P_STOP_B");
+		ponA = _animationChache->animationByName("P_BACK");
 		break;
 	case eDIR::LEFT:
 		anim = _animationChache->animationByName("STOP_L");
-		//ponA = _animationChache->animationByName("P_STOP_L");
+		ponA = _animationChache->animationByName("P_LEFT");
 		break;
 	case eDIR::RIGHT:
 		anim = _animationChache->animationByName("STOP_R");
-		//ponA = _animationChache->animationByName("P_STOP_R");
+		ponA = _animationChache->animationByName("P_RIGHT");
 		break;
 	default:
 		break;
 	}
 	auto action = RepeatForever::create(Animate::create(anim));
-	//auto pAction = RepeatForever::create(Animate::create(ponA));
+	auto pAction = RepeatForever::create(Animate::create(ponA));
 	_mySprite->runAction(action);
-	//_ponSprite->runAction(pAction);
+	_ponSprite->runAction(pAction);
 }
 
 void CharacterAnimation::stopAnimation()
@@ -343,6 +343,47 @@ void CharacterAnimation::stopPonAnim(eDIR dirName)
 void CharacterAnimation::stopPonAnim()
 {
 	stopPonAnim(_dir);
+}
+
+void CharacterAnimation::stopAllAnimation(eDIR dirName)
+{
+	if (_movedAnim == false && _dir == dirName) return;
+	_mySprite->stopAllActions();
+	_ponSprite->stopAllActions();
+	_dir = dirName;
+	_movedAnim = false;
+	Animation* anim;
+	Animation* ponA;
+	switch (dirName)
+	{
+	case eDIR::FRONT:
+		anim = _animationChache->animationByName("STOP_F");
+		ponA = _animationChache->animationByName("P_STOP_F");
+		break;
+	case eDIR::BACK:
+		anim = _animationChache->animationByName("STOP_B");
+		ponA = _animationChache->animationByName("P_STOP_B");
+		break;
+	case eDIR::LEFT:
+		anim = _animationChache->animationByName("STOP_L");
+		ponA = _animationChache->animationByName("P_STOP_L");
+		break;
+	case eDIR::RIGHT:
+		anim = _animationChache->animationByName("STOP_R");
+		ponA = _animationChache->animationByName("P_STOP_R");
+		break;
+	default:
+		break;
+	}
+	auto action = RepeatForever::create(Animate::create(anim));
+	auto pAction = RepeatForever::create(Animate::create(ponA));
+	_mySprite->runAction(action);
+	_ponSprite->runAction(pAction);
+}
+
+void CharacterAnimation::stopAllAnimation()
+{
+	stopAllAnimation(_dir);
 }
 
 void CharacterAnimation::stopAction()

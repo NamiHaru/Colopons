@@ -3,6 +3,8 @@
 #include "TitleLogo.h"
 #include "TitleSelectScene.h"
 #include "ColorEnum.h"
+#include "Movie.h"
+#include "ResetButton.h"
 
 using namespace cocos2d;
 
@@ -80,6 +82,16 @@ bool TitleLayer::init(SaveData* saveData)
 	else titleLogo = TitleLogo::create();
 	this->addChild(titleLogo);
 
+	ResetButton* resetButton = ResetButton::create("Menu/Reset.png");
+	this->addChild(resetButton);
+	resetButton->setPosition(resetButton->getContentSize().width * 0.5f + resetButton->getContentSize().height * 0.5f, designResolutionSize.height - resetButton->getContentSize().height);
+
+	_menu = MenuTable::createInClosed("Menu/MenuBack.png", resetButton->getPosition(), 0.0f, 0.5f);
+	this->addChild(_menu);
+	_menu->setOpenPos(designResolutionSize*0.5f);
+
+	this->scheduleUpdate();
+
 	return true;
 }
 
@@ -99,6 +111,17 @@ TitleLayer* TitleLayer::create(SaveData* saveData)
 	}
 }
 
+void TitleLayer::update(float delta)
+{
+	_timer += delta;
+	if (_MOVIE_CHANGE_TIME < _timer)
+	{
+		auto movie = Movie::createScene();
+		auto tra = TransitionFade::create(1.0f, movie, Color3B::WHITE);
+		Director::getInstance()->replaceScene(tra);
+	}
+}
+
 bool TitleLayer::onTouchBegan(Touch* touch, Event* event)
 {
 	float base = 50.0f;
@@ -107,14 +130,6 @@ bool TitleLayer::onTouchBegan(Touch* touch, Event* event)
 	/*auto str = String::createWithFormat("%f, %f", touch->getLocation().x, touch->getLocation().y);
 	label->setString(str->getCString());*/
 	
-	if (touch->getLocation().x < base && touch->getLocation().y > designResolutionSize.height - base)
-	{
-		_saveData->AllResset();
-		auto scene = TitleSelectScene::createTitleScene();
-		auto transition = TransitionPageTurn::create(0.5f, scene, 1);
-		Director::getInstance()->replaceScene(transition);
-	}
-
 	if (_replacedScene && ((TitleSelectScene*)this->getParent())->_replaceLayer) return false;
 	_replacedScene = true;
 	((TitleSelectScene*)this->getParent())->replaceSelect();
@@ -131,4 +146,14 @@ void TitleLayer::setDefaultSpeed()
 {
 	ws->setScrollSpriteSpeed(_woodScrollSpeed);
 	ts->setScrollSpriteSpeed(_scrollSpeed);
+}
+
+void TitleLayer::reset()
+{
+	_menu->openMenu();
+
+	/*_saveData->AllResset();
+	auto scene = TitleSelectScene::createTitleScene();
+	auto transition = TransitionPageTurn::create(0.5f, scene, 1);
+	Director::getInstance()->replaceScene(transition);*/
 }

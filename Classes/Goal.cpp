@@ -45,6 +45,7 @@ bool Goal::init(Vec2 spawnPos,Color4F color)
 */
 
 	goalTimer = 0.0f;
+	objectRange = 60.0f;
 
 	scheduleUpdate();
 
