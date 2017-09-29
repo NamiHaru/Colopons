@@ -45,6 +45,9 @@ public:
 	void stopPonAnim(eDIR dirName);		// ぽんのアニメーションを停止(向き指定)
 	void stopPonAnim();					// ぽんのアニメーションを停止
 
+	void stopAllAnimation(eDIR dirName);
+	void stopAllAnimation();
+
 	void stopAction();					// アニメーション自体を停止
 	cocos2d::Sprite* getSp();			// クラス内のスプライトを取得(オススメしない)
 	cocos2d::Sprite* getPon();

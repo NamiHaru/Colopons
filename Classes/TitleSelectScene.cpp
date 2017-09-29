@@ -1,5 +1,6 @@
 #include "TitleSelectScene.h"
 #include "ColorEnum.h"
+#include "Movie.h"
 
 using namespace cocos2d;
 

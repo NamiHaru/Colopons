@@ -6,6 +6,7 @@
 #include "TitleScroll.h"
 #include "WoodScroll.h"
 #include "SaveData.h"
+#include "MenuTable.h"
 
 class TitleLayer : public cocos2d::Layer
 {
@@ -20,11 +21,18 @@ public:
 	float _scrollSpeed = 3.0f;
 	cocos2d::Color4F _lastClearColor = cocos2d::Color4F::WHITE;
 	SaveData* _saveData;
+	MenuTable* _menu;
+
+	float _timer = 0.0f;
+	float _MOVIE_CHANGE_TIME = 30.0f;
+	void update(float delta);
 
 	void setScrollStop();
 	void setDefaultSpeed();
 	
 	bool onTouchBegan(cocos2d::Touch* pTouch, cocos2d::Event* pEvent);
+
+	void reset();
 
 	//cocos2d::Label* label;
 };
