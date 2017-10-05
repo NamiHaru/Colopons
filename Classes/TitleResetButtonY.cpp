@@ -1,4 +1,4 @@
-#include "TitleReseButtonY.h"
+#include "TitleResetButtonY.h"
 
 using namespace cocos2d;
 

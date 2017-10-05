@@ -30,7 +30,7 @@ bool ScrollSprite::init(string fileName, float scrollSpeed, eOrientation orienta
 			if (spriteWidthAll > designResolutionSize.width + size.width && cnt > 0) break;
 
 			cnt++;
-			log("%d", _bgSprites.size());
+			//log("%d", _bgSprites.size());
 		}
 		this->schedule(schedule_selector(ScrollSprite::updateL));
 		break;

@@ -150,10 +150,10 @@ void TitleLayer::setDefaultSpeed()
 
 void TitleLayer::reset()
 {
-	_menu->openMenu();
+	//_menu->openMenu();
 
-	/*_saveData->AllResset();
+	_saveData->AllResset();
 	auto scene = TitleSelectScene::createTitleScene();
 	auto transition = TransitionPageTurn::create(0.5f, scene, 1);
-	Director::getInstance()->replaceScene(transition);*/
+	Director::getInstance()->replaceScene(transition);
 }
